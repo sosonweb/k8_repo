@@ -1,28 +1,29 @@
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }
 resource "aws_instance" "master_node" {
-  ami           = "ami-0b8b44ec9a8f90422"
-  instance_type = "t2.large"
-  subnet_id     = "subnet-09392493accfea517"
-  key_name      = "jenkins_keypair"
-  vpc_security_group_ids = ["sg-016c9eac6b8678339"]
-  associate_public_ip_address = true
+  ami           = local.ami
+  instance_type = local.instance_type
+  subnet_id     = local.subnet_id
+  key_name      = local.key_name
+  vpc_security_group_ids = local.vpc_security_group_ids
+  associate_public_ip_address = local.associate_public_ip_address
 
   tags = {
     Name = "MasterNode"
   }
 }
 
-
 resource "aws_instance" "workernode" {
-  ami           = "ami-0b8b44ec9a8f90422"
-  instance_type = "t2.large"
-  subnet_id     = "subnet-09392493accfea517"
-  key_name      = "jenkins_keypair"
-  vpc_security_group_ids = ["sg-016c9eac6b8678339"]
-  associate_public_ip_address = true
+  ami           = local.ami
+  instance_type = local.instance_type
+  subnet_id     = local.subnet_id
+  key_name      = local.key_name
+  vpc_security_group_ids = local.vpc_security_group_ids
+  associate_public_ip_address = local.associate_public_ip_address
+
   tags = {
     Name = "workerNode"
   }
+
 }
